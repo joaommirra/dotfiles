@@ -1,0 +1,118 @@
+-- -- import lspconfig plugin safely
+-- local lspconfig_status, lspconfig = pcall(require, "lspconfig")
+-- if not lspconfig_status then
+--   return
+-- end
+--
+-- -- import cmp-nvim-lsp plugin safely
+-- local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+-- if not cmp_nvim_lsp_status then
+--   return
+-- end
+--
+-- -- import typescript plugin safely
+-- local typescript_setup, typescript = pcall(require, "typescript")
+-- if not typescript_setup then
+--   return
+-- end
+--
+-- local keymap = vim.keymap -- for conciseness
+--
+-- local lsp = require("lsp-zero")
+--
+--
+-- lsp.preset("recommended")
+--
+-- lsp.ensure_installed({
+--   'tsserver',
+--   'eslint',
+--   'sumneko_lua',
+--   'rust_analyzer',
+-- })
+--
+-- -- Fix Undefined global 'vim'
+-- lsp.configure('sumneko_lua', {
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = { 'vim' }
+--       }
+--     }
+--   }
+-- })
+--
+--
+-- local cmp = require('cmp')
+-- local cmp_select = { behavior = cmp.SelectBehavior.Select }
+-- local cmp_mappings = lsp.defaults.cmp_mappings({
+--   ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+--   ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+--   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+--   ["<C-Space>"] = cmp.mapping.complete(),
+-- })
+-- local sources = cmp.config.sources({
+--   { name = "nvim_lsp" },
+--   { name = "luasnip" },
+--   { name = "buffer" },
+--   { name = "path" },
+-- })
+--
+-- -- disable completion with tab
+-- -- this helps with copilot setup
+-- -- cmp_mappings['<Tab>'] = nil
+-- -- cmp_mappings['<S-Tab>'] = nil
+--
+-- lsp.setup_nvim_cmp({
+--   mapping = cmp_mappings,
+--   sources = sources
+-- })
+--
+-- lsp.set_preferences({
+--   suggest_lsp_servers = true,
+--   sign_icons = {
+--     error = 'E',
+--     warn = 'W',
+--     hint = 'H',
+--     info = 'I'
+--   }
+-- })
+--
+-- lsp.on_attach(function(client, bufnr)
+--   local opts = { buffer = bufnr, remap = false }
+--
+--   if client.name == "eslint" then
+--     vim.cmd.LspStop('eslint')
+--     return
+--   end
+--
+--   -- typescript specific keymaps (e.g. rename file and update imports)
+--   if client.name == "tsserver" then
+--     keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
+--     keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
+--     keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
+--   end
+--
+--   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+--   vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+--   vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+--   vim.keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+--   -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+--   vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+--   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+--   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+--   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+--   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+--   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+--   vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
+--   -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+--   vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
+--   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+-- end)
+--
+-- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+--
+-- lsp.setup()
+--
+-- vim.diagnostic.config({
+--   virtual_text = true,
+-- })
