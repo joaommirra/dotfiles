@@ -21,7 +21,7 @@ keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
-keymap("n", "<leader>gd", "<cmd>Lspsaga peek_definition<CR>")
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
 
 -- Go to Definition
 keymap("n", "gd", ":Lspsaga goto_definition<CR>")
