@@ -1,4 +1,3 @@
-
 local setup, lualine = pcall(require, "lualine")
 
 if not setup then
@@ -6,4 +5,6 @@ if not setup then
 end
 
 
-lualine.setup()
+lualine.setup({
+  options = { theme = 'dracula-nvim' }
+})

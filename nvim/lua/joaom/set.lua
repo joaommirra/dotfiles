@@ -1,5 +1,10 @@
 vim.opt.guicursor = ""
 
+vim.cmd([[cnoreabbrev Q quit]])
+vim.cmd([[cnoreabbrev Quit quit]])
+vim.cmd([[cnoreabbrev W write]])
+vim.cmd([[cnoreabbrev Write write]])
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -27,7 +32,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
+-- vim.opt.colorcolumn = "120"
 
 -- cursor line
 vim.opt.cursorline = true
