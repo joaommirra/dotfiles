@@ -17,4 +17,5 @@ nvimtree.setup({
 			window_picker = { enable = false },
 		},
 	},
+ disable_netrw   
 })

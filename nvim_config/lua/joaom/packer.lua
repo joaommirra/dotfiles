@@ -29,16 +29,16 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- theme
-  -- use({
-  --   "olivercederborg/poimandres.nvim",
-  --   config = function()
-  --     require("poimandres").setup({
-  --       -- leave this setup function empty for default config
-  --       -- or refer to the configuration section
-  --       -- for configuration options
-  --     })
-  --   end,
-  -- })
+  use({
+    "olivercederborg/poimandres.nvim",
+    config = function()
+      require("poimandres").setup({
+        -- leave this setup function empty for default config
+        -- or refer to the configuration section
+        -- for configuration options
+      })
+    end,
+  })
 
   -- UI
   use("nvim-tree/nvim-tree.lua")
@@ -198,11 +198,7 @@ return require("packer").startup(function(use)
   --   end
   -- }
   --
-  -- Using Packer:
   use {'Mofiqul/dracula.nvim',
-  config = function()
-    vim.cmd[[colorscheme dracula-soft]]
-  end
   }
 
   use {'mfussenegger/nvim-dap'}
