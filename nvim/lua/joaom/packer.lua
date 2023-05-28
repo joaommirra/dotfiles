@@ -117,7 +117,6 @@ return require("packer").startup(function(use)
   -- use("vim-scripts/ReplaceWithRegister") -- check docs
   use({ "numToStr/Comment.nvim" })
 
-  -- use({ "github/copilot.vim" })
   use {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -201,6 +200,10 @@ return require("packer").startup(function(use)
   use {'Mofiqul/dracula.nvim',
   }
 
+  use {'b0o/incline.nvim'}
+  use{'brenoprata10/nvim-highlight-colors'}
+  use {'matbme/JABS.nvim'}
+
   use {'mfussenegger/nvim-dap'}
   use { 'leoluz/nvim-dap-go' }
   use { 'rcarriga/nvim-dap-ui' }
@@ -212,6 +215,10 @@ return require("packer").startup(function(use)
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
 
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+
+end}
   if packer_bootstrap then
     require("packer").sync()
   end
